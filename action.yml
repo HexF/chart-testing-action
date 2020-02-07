@@ -1,6 +1,6 @@
-name: "Helm Chart Testing"
+name: "Helm Chart Testing Helm 3"
 description: "Run the Helm chart-testing tool"
-author: "The Helm authors"
+author: "The Helm authors + HexF"
 branding:
   color: blue
   icon: anchor
