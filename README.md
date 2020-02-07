@@ -38,7 +38,7 @@ jobs:
 
       - name: Run chart-testing (lint)
         id: lint
-        uses: helm/chart-testing-action@v1.0.0-alpha.3
+        uses: HexF/chart-testing-action@v3.0.0
         with:
           command: lint
 
