@@ -50,7 +50,7 @@ jobs:
         if: steps.lint.outputs.changed == 'true'
 
       - name: Run chart-testing (install)
-        uses: helm/chart-testing-action@v1.0.0-alpha.3
+        uses: HexF/chart-testing-action@v3.0.0
         with:
           command: install
 ```
