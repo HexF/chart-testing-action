@@ -133,7 +133,7 @@ configure_kube() {
 }
 
 helm_init() {
-    docker_exec helm init --client-only
+    docker_exec helm init
     echo
 }
 
