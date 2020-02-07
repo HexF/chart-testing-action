@@ -52,7 +52,6 @@ main() {
     # All other ct commands require a cluster to be created in a previous step.
     else
         configure_kube
-        install_tiller
     fi
 
     run_ct
@@ -131,16 +130,6 @@ run_ct_container() {
 configure_kube() {
     docker_exec sh -c 'mkdir -p /root/.kube'
     docker cp "$kubeconfig" ct:/root/.kube/config
-}
-
-install_tiller() {
-    echo 'Installing Tiller...'
-    docker_exec sh -c 'kubectl create serviceaccount tiller --namespace kube-system --save-config --dry-run \
-        --output=yaml | kubectl apply -f -'
-    docker_exec sh -c 'kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin \
-        --serviceaccount=kube-system:tiller --save-config --dry-run --output=yaml | kubectl apply -f -'
-    docker_exec helm init --service-account tiller --upgrade --wait
-    echo
 }
 
 helm_init() {
