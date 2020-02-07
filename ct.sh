@@ -48,7 +48,8 @@ main() {
     echo "::set-output name=changed::true"
 
     if [[ "$command" == "lint" ]] || [[ "$command" == "list-changed" ]]; then
-        helm_init
+        echo 
+        # Nothing is required to lint anymore
     # All other ct commands require a cluster to be created in a previous step.
     else
         configure_kube
@@ -130,11 +131,6 @@ run_ct_container() {
 configure_kube() {
     docker_exec sh -c 'mkdir -p /root/.kube'
     docker cp "$kubeconfig" ct:/root/.kube/config
-}
-
-helm_init() {
-    docker_exec helm init
-    echo
 }
 
 run_ct() {
