@@ -145,6 +145,7 @@ configure_kube() {
     docker_exec kubectl get storageclass
     docker_exec kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     docker_exec kubectl patch storageclass nfs -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+    docker_exec kubectl get storageclass
     
 }
 
