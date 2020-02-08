@@ -141,8 +141,8 @@ configure_kube() {
 }
 
 run_ct() {
-    echo "Running 'ct $command --chart-repos $CT_CHART_REPOS'..."
-    docker_exec ct "$command" --chart-repos $(echo $CT_CHART_REPOS | sed -e "s/ /,/g")
+    echo "Running 'ct $command --debug"
+    docker_exec ct "$command" --chart-repos $(echo $CT_CHART_REPOS | sed -e "s/ /,/g") --debug
     echo
 }
 
