@@ -138,6 +138,8 @@ run_ct_container() {
 configure_kube() {
     docker_exec sh -c "mkdir -p /root/.kube;"
     docker cp "$kubeconfig" ct:/root/.kube/config
+    docker_exec helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
+    docker_exec help repo update
     docker_exec helm install stable/nfs-server-provisioner --generate-name
 }
 
