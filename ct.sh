@@ -138,13 +138,14 @@ run_ct_container() {
 configure_kube() {
     docker_exec sh -c "mkdir -p /root/.kube;"
     docker cp "$kubeconfig" ct:/root/.kube/config
-    docker_exec kubectl get storageclass
+    
     docker_exec helm repo add stable https://kubernetes-charts.storage.googleapis.com/ 
     docker_exec helm repo update
     docker_exec helm install stable/nfs-server-provisioner --generate-name
-    docker_exec kubectl get storageclass
+    
     docker_exec kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
     docker_exec kubectl patch storageclass nfs -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+    docker_exec kubectl describe storageclass
     docker_exec kubectl get storageclass
     
 }
