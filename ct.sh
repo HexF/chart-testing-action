@@ -34,7 +34,7 @@ main() {
 
     run_ct_container
     docker_exec sh -c "export CT_CHART_REPOS='$CT_CHART_REPOS'"
-    echo "Hello, $CT_CHART_REPOS was imported"
+    echo "Hello, $CT_CHART_REPOS was imported, we will append to CLI"
     trap cleanup EXIT
 
     local changed
@@ -141,8 +141,8 @@ configure_kube() {
 }
 
 run_ct() {
-    echo "Running 'ct $command'..."
-    docker_exec ct "$command"
+    echo "Running 'ct $command --chart-repos $CT_CHART_REPOS'..."
+    docker_exec ct "$command --chart-repos $CT_CHART_REPOS"
     echo
 }
 
