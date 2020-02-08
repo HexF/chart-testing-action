@@ -142,7 +142,7 @@ configure_kube() {
 
 run_ct() {
     echo "Running 'ct $command --chart-repos $CT_CHART_REPOS'..."
-    docker_exec ct "$command --chart-repos $CT_CHART_REPOS"
+    docker_exec ct "$command" --chart-repos "$CT_CHART_REPOS"
     echo
 }
 
