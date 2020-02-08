@@ -121,6 +121,11 @@ run_ct_container() {
     if [[ -n "$config" ]]; then
         args+=("--volume=$(pwd)/$config:/etc/ct/ct.yaml" )
     fi
+    
+    if [[ -n "$CT_CHART_REPOS" ]]; then
+        args+=("-e CT_CHART_REPOS='$CT_CHART_REPOS'")
+    fi
+    
 
     args+=("$image" cat)
 
@@ -135,7 +140,7 @@ configure_kube() {
 
 run_ct() {
     echo "Adding CT_CHART_REPOS to container"
-    docker_exec export CT_CHART_REPOS="$CT_CHART_REPOS"
+    docker_exec export CT_CHART_REPOS=""
     
     echo "Running 'ct $command'..."
     docker_exec ct "$command"
