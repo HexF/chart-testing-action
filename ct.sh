@@ -134,7 +134,7 @@ run_ct_container() {
 }
 
 configure_kube() {
-    docker_exec sh -c 'mkdir -p /root/.kube'
+    docker_exec sh -c "mkdir -p /root/.kube; export CT_CHART_REPOS='$CT_CHART_REPOS'"
     docker cp "$kubeconfig" ct:/root/.kube/config
 }
 
