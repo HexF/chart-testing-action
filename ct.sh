@@ -139,9 +139,6 @@ configure_kube() {
 }
 
 run_ct() {
-    echo "Adding CT_CHART_REPOS to container"
-    docker_exec export CT_CHART_REPOS=""
-    
     echo "Running 'ct $command'..."
     docker_exec ct "$command"
     echo
